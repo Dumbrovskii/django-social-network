@@ -1,0 +1,13 @@
+[project]
+name = "django-social-network"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Dumbrovskii", email = "dumbrovskyy@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "django>=6.1",
+    "django-environ>=0.14.0",
+]
