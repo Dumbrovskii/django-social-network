@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}DjangoSocial — Connect. Share. Discover.{% endblock %}
+
+{% block content %}
+<section class="landing">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+                <div class="mb-4">
+                    <span class="badge rounded-pill hero-badge px-3 py-2">
+                        A simple social network
+                    </span>
+                </div>
+
+                <h1 class="hero-title mb-4">
+                    Connect.<br>
+                    Share.<br>
+                    <span>Discover.</span>
+                </h1>
+
+                <p class="hero-text mb-4">
+                    A simple place to share your thoughts, connect with people,
+                    and discover what's happening around you.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 mb-5">
+                    <a href="{% url 'register' %}" class="btn btn-main">
+                        Create account
+                    </a>
+
+                    <a href="{% url 'login' %}" class="btn btn-outline-light">
+                        Log in
+                    </a>
+                </div>
+
+                <div class="d-flex flex-wrap gap-4">
+                    <div class="hero-feature">
+                        <strong>Share</strong><br>
+                        <small>your thoughts</small>
+                    </div>
+
+                    <div class="hero-feature">
+                        <strong>Connect</strong><br>
+                        <small>with people</small>
+                    </div>
+
+                    <div class="hero-feature">
+                        <strong>Discover</strong><br>
+                        <small>new content</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="social-preview">
+                    <div class="glow"></div>
+
+                    <div class="feed-card">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div>
+                                <div class="fw-semibold">DjangoSocial</div>
+                                <small class="ds-muted">Your feed</small>
+                            </div>
+
+                            <span class="badge rounded-pill ds-live">
+                                Live
+                            </span>
+                        </div>
+
+                        <div class="feed-post mb-3">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="feed-avatar">A</div>
+
+                                <div>
+                                    <div class="fw-semibold">Alice Smith</div>
+                                    <small class="ds-muted">2 hours ago</small>
+                                </div>
+                            </div>
+
+                            <p class="mb-3">
+                                Just finished my new project.
+                                Can't wait to share it with everyone!
+                            </p>
+
+                            <div class="d-flex gap-4 ds-muted">
+                                <span>♥ 24</span>
+                                <span>💬 7</span>
+                                <span>↗ Share</span>
+                            </div>
+                        </div>
+
+                        <div class="feed-post">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="feed-avatar">J</div>
+
+                                <div>
+                                    <div class="fw-semibold">John Miller</div>
+                                    <small class="ds-muted">5 hours ago</small>
+                                </div>
+                            </div>
+
+                            <p class="mb-3">
+                                What are you working on today?
+                            </p>
+
+                            <div class="d-flex gap-4 ds-muted">
+                                <span>♥ 18</span>
+                                <span>💬 3</span>
+                                <span>↗ Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

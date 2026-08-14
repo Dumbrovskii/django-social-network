@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card content-section">
+
+        <div class="text-center mb-4">
+            <h1 class="auth-title">Welcome back</h1>
+            <p class="auth-subtitle">
+                Log in to your DjangoSocial account
+            </p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <fieldset class="mb-4">
+                {{ form|crispy }}
+            </fieldset>
+
+            <button class="btn btn-main w-100" type="submit">
+                Login
+            </button>
+        </form>
+
+        <div class="auth-divider"></div>
+
+        <div class="text-center">
+            <small class="auth-subtitle">
+                Need an account?
+                <a href="{% url 'register' %}" class="auth-link">
+                    Sign up now
+                </a>
+            </small>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

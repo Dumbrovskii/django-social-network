@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+
+{% block title %}Home — DjangoSocial{% endblock %}
+
+{% block content %}
+
+<div class="feed-page">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- LEFT SIDEBAR -->
+            <aside class="col-lg-3">
+                <div class="feed-sidebar">
+
+                    <a href="#" class="feed-sidebar-item active">
+                        <span class="feed-sidebar-icon">⌂</span>
+                        <span>Home</span>
+                    </a>
+
+                    <a href="#" class="feed-sidebar-item">
+                        <span class="feed-sidebar-icon">👤</span>
+                        <span>Profile</span>
+                    </a>
+
+                    <a href="#" class="feed-sidebar-item">
+                        <span class="feed-sidebar-icon">👥</span>
+                        <span>Friends</span>
+                    </a>
+
+                    <a href="#" class="feed-sidebar-item">
+                        <span class="feed-sidebar-icon">🔍</span>
+                        <span>Explore</span>
+                    </a>
+
+                    <a href="#" class="feed-sidebar-item">
+                        <span class="feed-sidebar-icon">🔔</span>
+                        <span>Notifications</span>
+                    </a>
+
+                </div>
+            </aside>
+
+
+            <!-- MAIN FEED -->
+            <main class="col-lg-6">
+
+                <!-- CREATE POST -->
+                <div class="feed-card create-post-card mb-4">
+
+                    <div class="d-flex align-items-center gap-3 mb-3">
+
+                        <div class="feed-avatar">
+                            {{ user.username|first|upper }}
+                        </div>
+
+                        <div class="flex-grow-1">
+                            <button class="create-post-input w-100 text-start">
+                                What's on your mind, {{ user.username }}?
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="create-post-actions">
+
+                        <button class="create-post-action">
+                            <span>🖼️</span>
+                            Photo
+                        </button>
+
+                        <button class="create-post-action">
+                            <span>😊</span>
+                            Feeling
+                        </button>
+
+                        <button class="create-post-action">
+                            <span>📍</span>
+                            Location
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- POST -->
+                <article class="feed-card feed-post mb-4">
+
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div class="feed-avatar">
+                                A
+                            </div>
+
+                            <div>
+                                <a href="#" class="feed-user-name">
+                                    Alice Smith
+                                </a>
+
+                                <div class="feed-post-time">
+                                    2 hours ago · 🌎
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button class="post-menu">
+                            ···
+                        </button>
+
+                    </div>
+
+                    <p class="feed-post-text">
+                        Just finished my new project!
+                        Can't wait to share it with everyone.
+                        What are you guys working on?
+                    </p>
+
+                    <div class="post-placeholder">
+                        <span>Project Preview</span>
+                    </div>
+
+                    <div class="post-stats">
+                        <span>❤️ 24</span>
+                        <span>7 comments</span>
+                    </div>
+
+                    <div class="post-actions">
+
+                        <button class="post-action">
+                            ♡
+                            Like
+                        </button>
+
+                        <button class="post-action">
+                            💬
+                            Comment
+                        </button>
+
+                        <button class="post-action">
+                            ↗
+                            Share
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- POST -->
+                <article class="feed-card feed-post mb-4">
+
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            <div class="feed-avatar">
+                                J
+                            </div>
+
+                            <div>
+                                <a href="#" class="feed-user-name">
+                                    John Miller
+                                </a>
+
+                                <div class="feed-post-time">
+                                    5 hours ago · 🌎
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button class="post-menu">
+                            ···
+                        </button>
+
+                    </div>
+
+                    <p class="feed-post-text">
+                        What are you working on today?
+                    </p>
+
+                    <div class="post-stats">
+                        <span>❤️ 18</span>
+                        <span>3 comments</span>
+                    </div>
+
+                    <div class="post-actions">
+
+                        <button class="post-action">
+                            ♡
+                            Like
+                        </button>
+
+                        <button class="post-action">
+                            💬
+                            Comment
+                        </button>
+
+                        <button class="post-action">
+                            ↗
+                            Share
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </main>
+
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="col-lg-3">
+
+                <div class="feed-card right-sidebar">
+
+                    <h5 class="sidebar-title">
+                        People you may know
+                    </h5>
+
+                    <div class="suggested-user">
+
+                        <div class="feed-avatar">
+                            M
+                        </div>
+
+                        <div class="flex-grow-1">
+                            <div class="feed-user-name">
+                                Mike Johnson
+                            </div>
+
+                            <small class="feed-post-time">
+                                5 mutual friends
+                            </small>
+                        </div>
+
+                        <button class="follow-button">
+                            +
+                        </button>
+
+                    </div>
+
+                    <div class="suggested-user">
+
+                        <div class="feed-avatar">
+                            S
+                        </div>
+
+                        <div class="flex-grow-1">
+                            <div class="feed-user-name">
+                                Sarah Wilson
+                            </div>
+
+                            <small class="feed-post-time">
+                                3 mutual friends
+                            </small>
+                        </div>
+
+                        <button class="follow-button">
+                            +
+                        </button>
+
+                    </div>
+
+                    <div class="suggested-user">
+
+                        <div class="feed-avatar">
+                            D
+                        </div>
+
+                        <div class="flex-grow-1">
+                            <div class="feed-user-name">
+                                David Brown
+                            </div>
+
+                            <small class="feed-post-time">
+                                2 mutual friends
+                            </small>
+                        </div>
+
+                        <button class="follow-button">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="feed-card mt-4">
+                    <h5 class="sidebar-title">
+                        DjangoSocial
+                    </h5>
+
+                    <p class="sidebar-description">
+                        Connect with people, share your thoughts
+                        and discover something new.
+                    </p>
+                </div>
+
+            </aside>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
