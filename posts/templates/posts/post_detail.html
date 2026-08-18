@@ -1,0 +1,46 @@
+<article class="content-section">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="d-flex align-items-center gap-3">
+            <div class="feed-avatar">
+                <img src="{{ post.author.profile.profile_photo.url }}" class="feed-avatar">
+            </div>
+            <div>
+                <a href="#" class="feed-user-name">
+                    {{ post.author }}
+                </a>
+                <div class="feed-post-time">
+                    {{ post.date_posted|timesince|truncatewords:2|slice:":-3"  }} ago · 🌎
+                </div>
+            </div>
+        </div>
+        <button class="post-menu">
+            ···
+        </button>
+    </div>
+
+    <div class="media-body">
+
+        <p class="article-content">
+            {{ post.content }}
+        </p>
+    </div>
+
+    <div class="post-stats">
+                        <span>❤️ 24</span>
+                        <span>7 comments</span>
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action">
+                            ♡
+                            Like
+                        </button>
+                        <button class="post-action">
+                            💬
+                            Comment
+                        </button>
+                        <button class="post-action">
+                            ↗
+                            Share
+                        </button>
+                    </div>
+</article>

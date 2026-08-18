@@ -45,107 +45,61 @@
             <main class="col-lg-6">
 
                 <!-- CREATE POST -->
-                <div class="feed-card create-post-card mb-4">
 
-                    <div class="d-flex align-items-center gap-3 mb-3">
+                {% include "posts/post_form.html" %}
 
-                        <div class="feed-avatar">
-                            {{ user.username|first|upper }}
-                        </div>
-
-                        <div class="flex-grow-1">
-                            <button class="create-post-input w-100 text-start">
-                                What's on your mind, {{ user.username }}?
-                            </button>
-                        </div>
-
-                    </div>
-
-                    <div class="create-post-actions">
-
-                        <button class="create-post-action">
-                            <span>🖼️</span>
-                            Photo
-                        </button>
-
-                        <button class="create-post-action">
-                            <span>😊</span>
-                            Feeling
-                        </button>
-
-                        <button class="create-post-action">
-                            <span>📍</span>
-                            Location
-                        </button>
-
-                    </div>
-
-                </div>
+                {% for post in posts %}
+                    {% include "posts/post_detail.html" %}
+                {% endfor %}
 
 
                 <!-- POST -->
                 <article class="feed-card feed-post mb-4">
-
                     <div class="d-flex align-items-center justify-content-between mb-3">
-
                         <div class="d-flex align-items-center gap-3">
 
                             <div class="feed-avatar">
                                 A
                             </div>
-
                             <div>
                                 <a href="#" class="feed-user-name">
                                     Alice Smith
                                 </a>
-
                                 <div class="feed-post-time">
                                     2 hours ago · 🌎
                                 </div>
                             </div>
-
                         </div>
-
                         <button class="post-menu">
                             ···
                         </button>
-
                     </div>
-
                     <p class="feed-post-text">
                         Just finished my new project!
                         Can't wait to share it with everyone.
                         What are you guys working on?
                     </p>
-
                     <div class="post-placeholder">
                         <span>Project Preview</span>
                     </div>
-
                     <div class="post-stats">
                         <span>❤️ 24</span>
                         <span>7 comments</span>
                     </div>
-
                     <div class="post-actions">
-
                         <button class="post-action">
                             ♡
                             Like
                         </button>
-
                         <button class="post-action">
                             💬
                             Comment
                         </button>
-
                         <button class="post-action">
                             ↗
                             Share
                         </button>
-
                     </div>
-
                 </article>
 
 
@@ -305,4 +259,12 @@
     </div>
 </div>
 
+<script>
+    const textarea = document.querySelector('.create-post-input');
+    const postButton = document.querySelector('#post-button');
+
+    textarea.addEventListener('input', function () {
+        postButton.style.display = this.value.trim() ? 'block' : 'none';
+    });
+</script>
 {% endblock %}

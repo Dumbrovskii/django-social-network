@@ -1249,3 +1249,28 @@ a.article-title:hover {
         height: 140px;
     }
 }
+
+.create-post-input {
+    border: none;
+    outline: none;
+    background: #f0f2f5;
+    border-radius: 20px;
+    padding: 10px 16px;
+    resize: none;
+    min-height: 42px;
+    font-size: 15px;
+}
+
+.create-post-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.post-submit {
+    margin-left: auto;
+}
+
+.post-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
