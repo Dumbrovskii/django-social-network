@@ -18,6 +18,8 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container">
+
+                <!-- Logo -->
                 <a class="navbar-brand" href="{% url 'home' %}">
                     Django<span>Social</span>
                 </a>
@@ -35,24 +37,96 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarToggle">
-                    <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                        {% if user.is_authenticated %}
-                            <a class="nav-link" href="{% url 'home' %}">Home</a>
-                            <a class="nav-link" href="#">Friends</a>
+                    {% if user.is_authenticated %}
 
-                            <form action="{% url 'logout' %}" method="post" class="d-inline">
-                                {% csrf_token %}
-                                <button type="submit" class="nav-link nav-link-button">
-                                    Logout
-                                </button>
-                            </form>
-                        {% else %}
-                            <a class="nav-link" href="{% url 'login' %}">Log in</a>
-                            <a class="btn btn-primary nav-register" href="{% url 'register' %}">
+                        <!-- Search -->
+                        <form class="d-flex ms-lg-4 me-lg-auto" role="search">
+                            <input
+                                class="form-control"
+                                type="search"
+                                placeholder="Search"
+                                aria-label="Search"
+                            >
+                        </form>
+
+                        <div class="navbar-nav align-items-lg-center gap-lg-2">
+
+                            <!-- Home -->
+                            <a class="nav-link" href="{% url 'home' %}">
+                                Home
+                            </a>
+
+                            <!-- Messages -->
+                            <a class="nav-link" href="#">
+                                Messages
+                            </a>
+
+                            <!-- Notifications -->
+                            <a class="nav-link" href="#">
+                                Notifications
+                            </a>
+
+                            <!-- Profile menu -->
+                            <div class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Profile
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="{% url 'profile' %}"
+                                        >
+                                            My Profile
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+
+                                    <li>
+                                        <form
+                                            action="{% url 'logout' %}"
+                                            method="post"
+                                        >
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                class="dropdown-item"
+                                            >
+                                                Logout
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                            <a class="nav-link" href="{% url 'login' %}">
+                                Log in
+                            </a>
+
+                            <a
+                                class="btn btn-primary nav-register"
+                                href="{% url 'register' %}"
+                            >
                                 Create account
                             </a>
-                        {% endif %}
-                    </div>
+                        </div>
+
+                    {% endif %}
                 </div>
             </div>
         </nav>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Profile — DjangoSocial{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="profile-edit-card content-section">
+
+        <div class="text-center mb-4">
+            <h1 class="auth-title">Edit Profile</h1>
+            <p class="auth-subtitle">
+                Update your personal information
+            </p>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <fieldset class="mb-4">
+                {{ form|crispy }}
+            </fieldset>
+
+            <div class="d-flex gap-2">
+                <button class="btn btn-main flex-grow-1" type="submit">
+                    Save Changes
+                </button>
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="btn btn-outline-light"
+                >
+                    Cancel
+                </a>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock content %}

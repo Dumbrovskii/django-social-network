@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}{{ profile.first_name }} {{ profile.last_name }} — DjangoSocial{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+    <div class="container">
+
+        <!-- PROFILE HEADER -->
+        <div class="profile-header">
+
+            <div class="profile-cover"></div>
+
+            <div class="profile-info">
+
+                <div class="profile-avatar-wrapper">
+                    {% if profile.profile_photo %}
+                        <img
+                            src="{{ profile.profile_photo.url }}"
+                            alt="{{ profile.first_name }} {{ profile.last_name }}"
+                            class="profile-avatar"
+                        >
+                    {% else %}
+                        <div class="profile-avatar profile-avatar-placeholder">
+                            {{ profile.first_name|first|upper }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="profile-main-info">
+
+                    <div class="d-flex align-items-center justify-content-between gap-3">
+
+                        <div>
+                            <h1 class="profile-name">
+                                {{ profile.first_name }} {{ profile.last_name }}
+                            </h1>
+
+                            <p class="profile-username">
+                                @{{ profile.user.username }}
+                            </p>
+                        </div>
+
+                        {% if profile.user == user %}
+                            <a
+                                href="{% url 'edit-profile' %}"
+                                class="btn btn-main"
+                            >
+                                Edit Profile
+                            </a>
+                        {% endif %}
+
+                    </div>
+
+                    {% if profile.bio %}
+                        <p class="profile-bio">
+                            {{ profile.bio }}
+                        </p>
+                    {% endif %}
+
+                    <div class="profile-details">
+
+                        {% if profile.city %}
+                            <span>
+                                📍 {{ profile.city }}
+                            </span>
+                        {% endif %}
+
+                        {% if profile.birth_date %}
+                            <span>
+                                🎂 {{ profile.birth_date|date:"F j, Y" }}
+                            </span>
+                        {% endif %}
+
+                        <span>
+                            📅 Joined {{ profile.created_at|date:"F Y" }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PROFILE NAVIGATION -->
+            <div class="profile-tabs">
+
+                <a href="#" class="profile-tab active">
+                    Posts
+                </a>
+
+                <a href="#" class="profile-tab">
+                    About
+                </a>
+
+                <a href="#" class="profile-tab">
+                    Friends
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROFILE CONTENT -->
+        <div class="row g-4 mt-1">
+
+            <!-- LEFT COLUMN -->
+            <aside class="col-lg-4">
+
+                <div class="profile-card">
+
+                    <h5 class="profile-card-title">
+                        About
+                    </h5>
+
+                    {% if profile.bio %}
+                        <p class="profile-about">
+                            {{ profile.bio }}
+                        </p>
+                    {% else %}
+                        <p class="profile-about text-muted">
+                            No bio yet.
+                        </p>
+                    {% endif %}
+
+                    <div class="profile-about-item">
+                        <span class="profile-about-icon">📍</span>
+
+                        <div>
+                            <small>Lives in</small>
+
+                            {% if profile.city %}
+                                <strong>{{ profile.city }}</strong>
+                            {% else %}
+                                <strong>Not specified</strong>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="profile-about-item">
+                        <span class="profile-about-icon">📅</span>
+
+                        <div>
+                            <small>Joined</small>
+                            <strong>
+                                {{ profile.created_at|date:"F Y" }}
+                            </strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+            <!-- WALL / POSTS -->
+            <main class="col-lg-8">
+
+                <!-- CREATE POST -->
+                {% if profile.user == user %}
+                    <div class="feed-card create-post-card mb-4">
+
+                        <div class="d-flex align-items-center gap-3">
+
+                            {% if profile.profile_photo %}
+                                <img
+                                    src="{{ profile.profile_photo.url }}"
+                                    alt=""
+                                    class="profile-mini-avatar"
+                                >
+                            {% else %}
+                                <div class="feed-avatar">
+                                    {{ profile.first_name|first|upper }}
+                                </div>
+                            {% endif %}
+
+                            <button class="create-post-input w-100 text-start">
+                                What's on your mind, {{ profile.first_name }}?
+                            </button>
+
+                        </div>
+
+                    </div>
+                {% endif %}
+
+
+                <!-- POSTS PLACEHOLDER -->
+
+                <div class="feed-card">
+
+                    <div class="empty-profile-posts">
+
+                        <div class="empty-profile-icon">
+                            ✦
+                        </div>
+
+                        <h4>
+                            No posts yet
+                        </h4>
+
+                        <p>
+                            {% if profile.user == user %}
+                                Share something with your friends.
+                            {% else %}
+                                {{ profile.first_name }} hasn't posted anything yet.
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
