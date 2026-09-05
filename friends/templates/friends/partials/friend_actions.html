@@ -1,0 +1,60 @@
+<div id="friend-actions" class="w-100">
+
+    {% if incoming_friend_request %}
+
+        <div class="d-flex align-items-center w-100 p-3 bg-dark">
+
+            <div class="flex-grow-1">
+                <strong>{{ incoming_friend_request.sender.profile.first_name }}
+                        {{ incoming_friend_request.sender.profile.last_name }}</strong>
+                sent you a friend request.
+            </div>
+
+            <div class="d-flex gap-2">
+                <button
+                    class="btn btn-primary btn-sm"
+                    hx-post="{% url 'accept-friend-request' incoming_friend_request.id %}"
+                    hx-target="#friend-actions"
+                    hx-swap="outerHTML"
+                >
+                    Confirm
+                </button>
+
+                <button
+                    class="btn btn-secondary btn-sm"
+                    hx-post="{% url 'reject-friend-request' incoming_friend_request.id %}"
+                    hx-target="#friend-actions"
+                    hx-swap="outerHTML"
+                >
+                    Delete
+                </button>
+            </div>
+
+        </div>
+
+    {% elif outcoming_friend_request %}
+
+        <div class="d-flex justify-content-end w-100">
+            <button class="btn btn-secondary" disabled>
+                Request sent
+            </button>
+        </div>
+
+    {% elif friendship %}
+
+    {% else %}
+
+        <div class="d-flex justify-content-end w-100">
+            <button
+                class="btn btn-primary"
+                hx-post="{% url 'send-friend-request' profile_user.id %}"
+                hx-target="#friend-actions"
+                hx-swap="outerHTML"
+            >
+                Add friend
+            </button>
+        </div>
+
+    {% endif %}
+
+</div>

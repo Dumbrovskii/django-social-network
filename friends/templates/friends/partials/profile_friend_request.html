@@ -1,0 +1,29 @@
+<div id="profile-friend-request"
+     class="d-flex align-items-center w-100 p-3 bg-dark">
+
+    <div class="flex-grow-1">
+        <strong>{{ incoming_friend_request.sender.username }}</strong>
+        sent you a friend request.
+    </div>
+
+    <div class="d-flex gap-2">
+        <button
+            class="btn btn-primary btn-sm"
+            hx-post="{% url 'accept-friend-request' incoming_friend_request.id %}"
+            hx-target="#accept-friend-request"
+            hx-swap="outerHTML"
+        >
+            Confirm
+        </button>
+
+        <button
+            class="btn btn-secondary btn-sm"
+            hx-post="{% url 'reject-friend-request' incoming_friend_request.id %}"
+            hx-target="#reject-friend-request"
+            hx-swap="outerHTML"
+        >
+            Delete
+        </button>
+    </div>
+
+</div>
