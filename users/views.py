@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.models import User
+from friends.services import get_friend_status
 from .forms import ProfileForm
 
-@login_required()
+
+@login_required(login_url="home")
 def edit_profile(request):
     profile = request.user.profile
 
@@ -15,13 +17,21 @@ def edit_profile(request):
         )
         if form.is_valid():
             form.save()
-            return redirect("profile")
+            return redirect(reverse('profile', kwargs={'username': request.user.username}))
     else:
         form = ProfileForm(instance=profile)
 
     return render(request, "users/edit_profile.html", {"form": form})
 
-@login_required()
-def profile(request):
-    profile = request.user.profile
-    return render(request, "users/profile.html", {"profile": profile})
+
+@login_required(login_url="home")
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+    print(get_friend_status(request.user, user))
+    print('get_friend_status(request.user, user)')
+
+    return render(
+        request,
+        "users/profile.html",
+        get_friend_status(request.user, user)
+    )
