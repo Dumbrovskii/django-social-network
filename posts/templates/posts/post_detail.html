@@ -5,8 +5,8 @@
                 <img src="{{ post.author.profile.profile_photo.url }}" class="feed-avatar">
             </div>
             <div>
-                <a href="#" class="feed-user-name">
-                    {{ post.author }}
+                <a href="{% url 'profile' post.author.username %}" class="feed-user-name">
+                    {{ post.author.profile.first_name|add:" "|add:post.author.profile.last_name }}
                 </a>
                 <div class="feed-post-time">
                     {{ post.date_posted|timesince|truncatewords:2|slice:":-3"  }} ago · 🌎

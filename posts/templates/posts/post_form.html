@@ -6,13 +6,13 @@
         <div class="d-flex align-items-center gap-3 mb-3">
 
             <div class="feed-avatar">
-                <img src="{{ user.profile.profile_photo.url }}" class="feed-avatar">
+                <img src="{{ user.profile.profile_photo.url }}">
             </div>
 
             <div class="flex-grow-1">
                 <textarea
                     name="content"
-                    class="create-post-input w-100"
+                    class="create-post-input w-100 text-start"
                     placeholder="What's on your mind, {{ user.username }}?"
                     rows="1"
                     required
