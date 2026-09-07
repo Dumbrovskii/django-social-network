@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ profile.first_name }} {{ profile.last_name }} — DjangoSocial{% endblock %}
+{% block title %}{{ profile_user.profile.first_name }} {{ profile_user.profile.last_name }} - DjangoSocial{% endblock %}
 
 {% block content %}
 
@@ -15,15 +15,15 @@
             <div class="profile-info">
 
                 <div class="profile-avatar-wrapper">
-                    {% if profile.profile_photo %}
+                    {% if profile_user.profile.profile_photo %}
                         <img
-                            src="{{ profile.profile_photo.url }}"
-                            alt="{{ profile.first_name }} {{ profile.last_name }}"
+                            src="{{ profile_user.profile.profile_photo.url }}"
+                            alt="{{ profile_user.profile.first_name }} {{ profile_user.profile.last_name }}"
                             class="profile-avatar"
                         >
                     {% else %}
                         <div class="profile-avatar profile-avatar-placeholder">
-                            {{ profile.first_name|first|upper }}
+                            {{ profile_user.profile.first_name|first|upper }}
                         </div>
                     {% endif %}
                 </div>
@@ -34,15 +34,15 @@
 
                         <div>
                             <h1 class="profile-name">
-                                {{ profile.first_name }} {{ profile.last_name }}
+                                {{ profile_user.profile.first_name }} {{ profile_user.profile.last_name }}
                             </h1>
 
                             <p class="profile-username">
-                                @{{ profile.user.username }}
+                                @{{ profile_user.profile.user.username }}
                             </p>
                         </div>
 
-                        {% if profile.user == user %}
+                        {% if user == profile_user %}
                             <a
                                 href="{% url 'edit-profile' %}"
                                 class="btn btn-main"
@@ -51,37 +51,41 @@
                             </a>
                         {% endif %}
 
+
+
                     </div>
 
-                    {% if profile.bio %}
+                    {% if profile_user.profile.bio %}
                         <p class="profile-bio">
-                            {{ profile.bio }}
+                            {{ profile_user.profile.bio }}
                         </p>
                     {% endif %}
 
                     <div class="profile-details">
 
-                        {% if profile.city %}
+                        {% if profile_user.profile.city %}
                             <span>
-                                📍 {{ profile.city }}
+                                📍 {{ profile_user.profile.city }}
                             </span>
                         {% endif %}
 
-                        {% if profile.birth_date %}
+                        {% if profile_user.profile.birth_date %}
                             <span>
-                                🎂 {{ profile.birth_date|date:"F j, Y" }}
+                                🎂 {{ profile_user.profile.birth_date|date:"F j, Y" }}
                             </span>
                         {% endif %}
 
                         <span>
-                            📅 Joined {{ profile.created_at|date:"F Y" }}
+                            📅 Joined {{ profile_user.profile.created_at|date:"F Y" }}
                         </span>
 
                     </div>
 
                 </div>
-
             </div>
+            {% if user != profile_user %}
+                {% include "friends/partials/friend_actions.html" %}
+            {% endif %}
 
             <!-- PROFILE NAVIGATION -->
             <div class="profile-tabs">
@@ -115,9 +119,9 @@
                         About
                     </h5>
 
-                    {% if profile.bio %}
+                    {% if profile_user.profile.bio %}
                         <p class="profile-about">
-                            {{ profile.bio }}
+                            {{ profile_user.profile.bio }}
                         </p>
                     {% else %}
                         <p class="profile-about text-muted">
@@ -131,8 +135,8 @@
                         <div>
                             <small>Lives in</small>
 
-                            {% if profile.city %}
-                                <strong>{{ profile.city }}</strong>
+                            {% if profile_user.profile.city %}
+                                <strong>{{ profile_user.profile.city }}</strong>
                             {% else %}
                                 <strong>Not specified</strong>
                             {% endif %}
@@ -145,7 +149,7 @@
                         <div>
                             <small>Joined</small>
                             <strong>
-                                {{ profile.created_at|date:"F Y" }}
+                                {{ profile_user.profile.created_at|date:"F Y" }}
                             </strong>
                         </div>
                     </div>
@@ -159,25 +163,25 @@
             <main class="col-lg-8">
 
                 <!-- CREATE POST -->
-                {% if profile.user == user %}
+                {% if profile_user == user %}
                     <div class="feed-card create-post-card mb-4">
 
                         <div class="d-flex align-items-center gap-3">
 
-                            {% if profile.profile_photo %}
+                            {% if profile_user.profile.profile_photo %}
                                 <img
-                                    src="{{ profile.profile_photo.url }}"
+                                    src="{{ profile_user.profile.profile_photo.url }}"
                                     alt=""
                                     class="profile-mini-avatar"
                                 >
                             {% else %}
                                 <div class="feed-avatar">
-                                    {{ profile.first_name|first|upper }}
+                                    {{ profile_user.profile.first_name|first|upper }}
                                 </div>
                             {% endif %}
 
                             <button class="create-post-input w-100 text-start">
-                                What's on your mind, {{ profile.first_name }}?
+                                What's on your mind, {{ profile_user.profile.first_name }}?
                             </button>
 
                         </div>
@@ -201,10 +205,10 @@
                         </h4>
 
                         <p>
-                            {% if profile.user == user %}
+                            {% if profile_user == user %}
                                 Share something with your friends.
                             {% else %}
-                                {{ profile.first_name }} hasn't posted anything yet.
+                                {{ profile_user.profile.first_name }} hasn't posted anything yet.
                             {% endif %}
                         </p>
 
